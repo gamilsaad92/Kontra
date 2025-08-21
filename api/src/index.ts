@@ -1,3 +1,4 @@
+// api/src/index.ts
 import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
@@ -13,7 +14,6 @@ import ai from './routes/ai'
 import analytics from './routes/analytics'
 import compliance from './routes/compliance'
 import feedback from './routes/feedback'
-import { scheduleNightlyScoring } from './jobs/scoring'
 
 const app = express()
 app.use(cors())
@@ -31,8 +31,6 @@ app.use('/ai', ai)
 app.use('/analytics', analytics)
 app.use('/compliance', compliance)
 app.use('/feedback', feedback)
-
-scheduleNightlyScoring()
 
 app.listen(env.PORT, () => {
   console.log(`[api] listening on http://localhost:${env.PORT}`)
