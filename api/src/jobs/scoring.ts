@@ -1,5 +1,3 @@
-// api/src/jobs/scoring.ts
-
 export type ScoreResult = { loanId: string; score: number }
 
 /**
