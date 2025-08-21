@@ -1,5 +1,7 @@
-import serverless from 'serverless-http'
-import app from '../src/app'
+// api/src/index.ts
+import { env } from './env'
+import app from './app'
 
-export const config = { runtime: 'nodejs' } // serverless Node runtime
-export default serverless(app)
+app.listen(env.PORT, () => {
+  console.log(`[api] listening on http://localhost:${env.PORT}`)
+})
