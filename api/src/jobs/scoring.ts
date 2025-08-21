@@ -1,9 +1,10 @@
 // api/src/jobs/scoring.ts
+
 export type ScoreResult = { loanId: string; score: number }
 
 /**
  * Invoked by the Vercel cron function (api/cron-nightly.ts).
- * Do NOT import node-cron or schedule anything here.
+ * Do NOT import node-cron or schedule anything in serverless.
  */
 export async function runNightlyScoring(): Promise<{ processed: number }> {
   console.log('[jobs] nightly predictive scoring started')
