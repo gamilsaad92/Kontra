@@ -1,7 +1,9 @@
-// api/src/index.ts
-import { env } from './env'
-import app from './app'
+// api/api/index.ts
+import serverless from 'serverless-http'
+import app from '../src/app'
 
-app.listen(env.PORT, () => {
-  console.log(`[api] listening on http://localhost:${env.PORT}`)
-})
+// Vercel runtime config
+export const config = { runtime: 'nodejs' }
+
+// Wrap the Express app with serverless-http so Vercel can run it
+export default serverless(app)
