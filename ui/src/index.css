@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 220 14% 98%;
+  --bg-soft: 220 14% 96%;
+  --bg-elevated: 0 0% 100%;
+  --fg: 220 20% 12%;
+  --fg-muted: 220 10% 40%;
+  --fg-dim: 220 8% 50%;
+  --card: 0 0% 100%;
+  --border: 220 14% 90%;
+}
+
+.dark {
+  --bg: 222 40% 8%;
+  --bg-soft: 224 32% 12%;
+  --bg-elevated: 222 28% 14%;
+  --fg: 210 20% 98%;
+  --fg-muted: 220 15% 75%;
+  --fg-dim: 220 14% 60%;
+  --card: 222 30% 14%;
+  --border: 220 14% 20%;
+}
+
+html, body, #root { height: 100%; }
+body { background-color: hsl(var(--bg)); color: hsl(var(--fg)); }
+
+/* Simple scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 8px; }
