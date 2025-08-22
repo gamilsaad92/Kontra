@@ -1,6 +1,4 @@
-// Kontra/api/api/health.ts
-import type { VercelRequest, VercelResponse } from '@vercel/node'
-
-export default async function handler(_req: VercelRequest, res: VercelResponse) {
+// api/api/health.ts
+export default function handler(_req: any, res: any) {
   res.status(200).json({ ok: true })
 }
