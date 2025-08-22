@@ -1,9 +1,16 @@
 {
   "functions": {
-    "api/index.ts": { "maxDuration": 30 },
-    "api/cron-nightly.ts": { "maxDuration": 60 }
+    "api/index.ts": {
+      "maxDuration": 30
+    },
+    "api/cron-nightly.ts": {
+      "maxDuration": 60
+    }
   },
   "crons": [
-    { "path": "/api/cron-nightly", "schedule": "15 2 * * *" }
+    {
+      "path": "/api/cron-nightly",
+      "schedule": "15 2 * * *"
+    }
   ]
 }

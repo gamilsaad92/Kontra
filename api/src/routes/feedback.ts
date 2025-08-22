@@ -1,13 +1,10 @@
 import { Router } from 'express'
-import { supabase } from '../supabase'
-
+import { db, uid } from '../memdb'
 const r = Router()
-
-r.post('/', async (req, res) => {
-  const orgId = (req as any).orgId as string
-  const { data, error } = await supabase.from('model_feedback').insert({ org_id: orgId, payload: req.body }).select().single()
-  if(error) return res.status(500).json({ error: error.message })
-  res.json(data)
+r.post('/', (req, res) => {
+  const { message, ts } = req.body || {}
+  const row = { id: uid('fb_'), message: message || '', ts: ts || Date.now() }
+  db.feedback.push(row)
+  res.json({ ok: true })
 })
-
 export default r

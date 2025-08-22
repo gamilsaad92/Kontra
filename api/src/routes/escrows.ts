@@ -1,34 +1,18 @@
 import { Router } from 'express'
-import { z } from 'zod'
-import { supabase } from '../supabase'
-
+import { db, uid } from '../memdb'
 const r = Router()
 
-const escrowSchema = z.object({
-  loan_id: z.string(),
-  type: z.enum(['tax', 'insurance']),
-  balance: z.number().nonnegative(),
+r.post('/', (req, res) => {
+  const { loan_id, type, balance } = req.body || {}
+  if(!loan_id || !type) return res.status(400).json({ error: 'invalid payload' })
+  const row = { id: uid('esc_'), loan_id, type, balance: Number(balance||0) }
+  db.escrows.push(row)
+  res.json(row)
 })
 
-r.post('/', async (req, res) => {
-  const orgId = (req as any).orgId as string
-  const parse = escrowSchema.safeParse(req.body)
-  if(!parse.success) return res.status(400).json(parse.error.flatten())
-
-  const { data, error } = await supabase.from('escrows').insert({
-    org_id: orgId,
-    ...parse.data
-  }).select().single()
-  if(error) return res.status(500).json({ error: error.message })
-  res.json(data)
-})
-
-r.get('/:loanId', async (req, res) => {
-  const orgId = (req as any).orgId as string
-  const { data, error } = await supabase.from('escrows')
-    .select('*').eq('org_id', orgId).eq('loan_id', req.params.loanId)
-  if(error) return res.status(500).json({ error: error.message })
-  res.json(data)
+r.get('/:loanId', (req, res) => {
+  const items = db.escrows.filter(e => e.loan_id === req.params.loanId)
+  res.json(items)
 })
 
 export default r

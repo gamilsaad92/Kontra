@@ -1,28 +1,14 @@
 import { Router } from 'express'
-import { z } from 'zod'
-import { isEnabled } from '../featureFlags'
-
+import { db, uid } from '../memdb'
 const r = Router()
 
-const tradeSchema = z.object({
-  type: z.enum(['loan_sale','participation','repo','securitization']),
-  notional: z.number().positive(),
-  counterparty: z.string()
-})
-
 r.post('/', (req, res) => {
-  if(!isEnabled('trading')) return res.status(404).json({ error: 'Trading module disabled' })
-  const parse = tradeSchema.safeParse(req.body)
-  if(!parse.success) return res.status(400).json(parse.error.flatten())
-
-  // TODO: persist to DB, emit webhook
-  res.json({ id: 't_'+Date.now(), status: 'accepted', ...parse.data })
+  const { type, notional, counterparty } = req.body || {}
+  const row = { id: uid('trd_'), type, notional: Number(notional||0), counterparty, ts: Date.now() }
+  db.trades.unshift(row)
+  res.json(row)
 })
 
-r.post('/webhook', (req, res) => {
-  // validate signature in production
-  console.log('[trades webhook]', req.body)
-  res.json({ ok: true })
-})
+r.post('/webhook', (_req, res) => res.json({ ok: true }))
 
 export default r

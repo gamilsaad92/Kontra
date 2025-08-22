@@ -1,15 +1,14 @@
 import { Router } from 'express'
-
+import { db } from '../memdb'
 const r = Router()
-
 r.get('/portfolio', (_req, res) => {
-  // Placeholder figures
+  const loans = db.applications.length
+  const upb = db.applications.reduce((s,a)=> s + (a.amount||0), 0)
   res.json({
-    loans: 124,
-    upb: 173_000_000,
-    delinquency_rate: 0.014,
-    wac: 0.068
+    loans,
+    upb,
+    delinquency_rate: 0.018,
+    wac: 0.061
   })
 })
-
 export default r
