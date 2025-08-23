@@ -1,17 +1,17 @@
 const BASE = import.meta.env.VITE_API_URL || 'http://localhost:8080'
-export async function api(path:string, init?:RequestInit){
+
+export async function api(path: string, init?: RequestInit) {
   const res = await fetch(BASE + path, {
     ...init,
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json',           // ✅ add this
       ...(init?.headers || {}),
-      'x-org-id': localStorage.getItem('orgId') || 'demo-org'
-    }
+      'x-org-id': localStorage.getItem('orgId') || 'demo-org',
+    },
   })
-  if(!res.ok){
-    let msg = ''
-    try{ msg = await res.text() }catch{}
-    throw new Error(msg || res.statusText)
-  }
-  return res.json()
+
+  // safer parse (allows empty bodies)
+  const text = await res.text()
+  if (!res.ok) throw new Error(text || res.statusText)
+  return text ? JSON.parse(text) : {}
 }
