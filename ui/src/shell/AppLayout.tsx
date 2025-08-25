@@ -1,6 +1,5 @@
 import { Outlet, NavLink } from 'react-router-dom'
-import { Search, LayoutDashboard, MapPin, BarChart3, Settings as SettingsIcon, FilePlus2, Landmark, Scale, ShieldCheck, Bot as BotIcon, LineChart } from 'lucide-react'
-import { useEffect } from 'react'
+import { Search, LayoutDashboard, MapPin, BarChart3, Settings as SettingsIcon, FilePlus2, Landmark, Scale, ShieldCheck, Bot as BotIcon, LineChart, Percent } from 'lucide-react'import { useEffect } from 'react'
 import { cn } from '../utils/cn'
 export function AppLayout(){
   useEffect(()=>{ const h=new Date().getHours(); document.documentElement.classList.toggle('dark', (h>=18||h<6)) },[])
@@ -19,6 +18,7 @@ export function AppLayout(){
           <Item to="/land" icon={<MapPin size={18}/>} label="Land Acquisition"/>
           <Item to="/market" icon={<BarChart3 size={18}/> } label="Market Analysis"/>
           <Item to="/settings" icon={<SettingsIcon size={18}/> } label="Settings"/>
+          <Item to="/olbs" icon={<Percent size={18}/> } label="OLB Coupon"/>
         </nav>
       </aside>
       <main className="flex-1 min-w-0">
