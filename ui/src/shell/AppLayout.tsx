@@ -1,5 +1,5 @@
 import { Outlet, NavLink } from 'react-router-dom'
-import { Search, LayoutDashboard, MapPin, BarChart3, Settings as SettingsIcon, FilePlus2, Landmark, Scale, ShieldCheck, Bot as BotIcon, LineChart, Percent } from 'lucide-react'import { useEffect } from 'react'
+import { Search, LayoutDashboard, MapPin, BarChart3, Settings as SettingsIcon, FilePlus2, Landmark, Scale, ShieldCheck, Bot as BotIcon, LineChart, Percent } from 'lucide-react'
 import { cn } from '../utils/cn'
 export function AppLayout(){
   useEffect(()=>{ const h=new Date().getHours(); document.documentElement.classList.toggle('dark', (h>=18||h<6)) },[])
