@@ -13,6 +13,7 @@ import Feedback from './pages/Feedback'
 import { Land } from './pages/Land'
 import { Market } from './pages/Market'
 import { Settings } from './pages/Settings'
+import Olbs from './pages/Olbs'
 import { FeatureProvider } from './featureFlags'
 
 const router = createBrowserRouter([
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
     { path: '/feedback', element: <Feedback/> },
     { path: '/land', element: <Land/> },
     { path: '/market', element: <Market/> },
+    { path: '/olbs', element: <Olbs/> },
     { path: '/settings', element: <Settings/> }
   ] }
 ])
