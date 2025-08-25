@@ -1,3 +1,5 @@
+// AppLayout.tsx
+import { useEffect } from "react";
 import { Outlet, NavLink } from 'react-router-dom'
 import { Search, LayoutDashboard, MapPin, BarChart3, Settings as SettingsIcon, FilePlus2, Landmark, Scale, ShieldCheck, Bot as BotIcon, LineChart, Percent } from 'lucide-react'
 import { cn } from '../utils/cn'
