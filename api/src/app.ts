@@ -12,6 +12,7 @@ import ai from './routes/ai'
 import analytics from './routes/analytics'
 import compliance from './routes/compliance'
 import feedback from './routes/feedback'
+import olbs from './routes/olbs'
 
 const app = express()
 app.use(cors())
@@ -29,5 +30,6 @@ app.use('/ai', ai)
 app.use('/analytics', analytics)
 app.use('/compliance', compliance)
 app.use('/feedback', feedback)
+app.use('/olbs', olbs)
 
 export default app
