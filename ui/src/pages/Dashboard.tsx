@@ -29,6 +29,7 @@ export function Dashboard(){
             <a href="/ai" className="border rounded-xl px-4 py-3 text-sm hover:opacity-90">AI Ingest</a>
             <a href="/escrows" className="border rounded-xl px-4 py-3 text-sm hover:opacity-90">Escrows</a>
             <a href="/trading" className="border rounded-xl px-4 py-3 text-sm hover:opacity-90">Trading</a>
+            <a href="/olbs" className="border rounded-xl px-4 py-3 text-sm hover:opacity-90">OLB Coupon</a>
           </div>
         </Card>
       </div>
