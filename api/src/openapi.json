@@ -122,6 +122,52 @@
           }
         }
       }
+        },
+    "/olbs/coupon": {
+      "get": {
+        "summary": "Calculate OLB coupon",
+        "parameters": [
+          {
+            "name": "occupancy",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "baseRate",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "floor",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "cap",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Coupon",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "coupon": { "type": "number" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
